@@ -1,3 +1,25 @@
+h1 {
+  font-size: 42px;
+  text-align: center;
+  font-family: 'Dosis', sans-serif;
+}
+
+.recipe {
+  font-size: 20px;
+  line-height: 1.4;
+  font-family: 'Dosis', sans-serif;
+}
+
+.tag {
+  font-size: 14;
+  font-family: 'Dosis', sans-serif;
+}
+
+ul {
+  list-style-type: none;
+}
+
+/* Phosphor Icons */
 .ph-xxs {
   font-size: 0.5em;
 }
