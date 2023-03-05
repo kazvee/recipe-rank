@@ -1,24 +1,38 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   background-color: #1c3e35;
+  color: #ecfdf5;
+  font-family: 'Dosis', sans-serif;
+  padding: 40px;
+}
+
+.header {
+  margin-bottom: 40px;
 }
 
 .recipe-form {
   background-color: #315c4f;
+  margin-bottom: 40px;
+  padding: 16px 40px;
 }
 
 h1 {
   font-size: 42px;
   text-align: center;
-  font-family: 'Dosis', sans-serif;
   color: #99f2d1;
 }
 
 .recipe {
   font-size: 20px;
   line-height: 1.4;
-  font-family: 'Dosis', sans-serif;
   background-color: #315c4f;
-  color: #ecfdf5;
+  margin-bottom: 16px;
+  padding: 16px 24px;
 }
 
 .form {
@@ -43,7 +57,7 @@ a:active {
 
 .tag {
   font-size: 14;
-  font-family: 'Dosis', sans-serif;
+
   color: #99f2d1;
 }
 
