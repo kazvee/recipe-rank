@@ -11,6 +11,8 @@ body {
   padding: 40px;
 }
 
+/* Main Layout */
+
 .header {
   margin-bottom: 40px;
   display: flex;
@@ -18,17 +20,25 @@ body {
   justify-content: space-between;
 }
 
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
 .recipe-form {
   background-color: #467a69;
   margin-bottom: 40px;
   padding: 16px 40px;
   text-align: center;
+}
+
+.main {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  gap: 48px;
+}
+
+/* Elements */
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
 }
 
 h1 {
@@ -48,6 +58,8 @@ h1 {
   align-items: center;
   gap: 24px;
 }
+
+/* Links  */
 
 a:link {
   color: #d8f3dc;
