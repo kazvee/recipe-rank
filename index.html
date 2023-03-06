@@ -14,98 +14,111 @@
 </head>
 
 <body>
-    <header class="header">
-        <div class="logo">
-            <i class="ph-cooking-pot ph-4x" alt="Recipe Rank Logo"></i>
-            <h1>Welcome to Recipe Rank!</h1>
-        </div>
-        <button>Share a recipe</button>
-    </header>
-    <form class="recipe-form">
-        <input type="text" placeholder="Enter new recipe description" />
-        <span>200</span>
-        <input type="text" placeholder="Enter link to recipe" />
-        <select>
-            <option value="">Choose cuisine type</option>
-            <option value="canadian">Canadian</option>
-            <option value="italian">Italian</option>
-            <option value="german">German</option>
-        </select>
-        <button>Post</button>
-    </form>
-    <main class="main">
-        <aside>
-            <ul>
-                <li><button>All</button></li>
-                <li><button>Canadian</button></li>
-                <li><button>German</button></li>
-                <li><button>Italian</button></li>
-            </ul>
-        </aside>
-        <section>
-            <ul>
-                <li class="recipe">
-                    <p>Crispy Ginger Beef - a Calgary classic!
-                        <a href="https://www.acanadianfoodie.com/2014/04/08/crispy-ginger-beef-the-authentic-calgary-recipe/"
-                            target="_blank">(Recipe)</a>
-                    </p>
-                    <span class="tag">Canadian</span>
-                    <div class="vote-buttons">
-                        <button><i class="ph-smiley ph-xl" style="color: green"><strong>11</strong></i></button>
-                        <button><i class="ph-smiley-meh ph-xl" style="color: orange"><strong>3</strong></i></button>
-                        <button><i class="ph-smiley-sad ph-xl" style="color: red"><strong>1</strong></i></button>
-                    </div>
-                </li>
-                <li class="recipe">
-                    <p>Nanaimo Bars - sweet and delicious!
-                        <a href="https://www.nanaimo.ca/about-nanaimo/nanaimo-bars" target="_blank">(Recipe)</a>
-                    </p>
-                    <span class="tag">Canadian</span>
-                    <div class="vote-buttons">
-                        <button><i class="ph-smiley ph-xl" style="color: green"><strong>14</strong></i></button>
-                        <button><i class="ph-smiley-meh ph-xl" style="color: orange"><strong>2</strong></i></button>
-                        <button><i class="ph-smiley-sad ph-xl" style="color: red"><strong>3</strong></i></button>
-                    </div>
-                </li>
-                <li class="recipe">
-                    <p>Tourtière (Meat Pie) - a beloved comfort food!
-                        <a href="https://www.kingarthurbaking.com/recipes/christmas-tourtiere-recipe"
-                            target="_blank">(Recipe)</a>
-                    </p>
-                    <span class="tag">Canadian</span>
-                    <div class="vote-buttons">
-                        <button><i class="ph-smiley ph-xl" style="color: green"><strong>14</strong></i></button>
-                        <button><i class="ph-smiley-meh ph-xl" style="color: orange"><strong>3</strong></i></button>
-                        <button><i class="ph-smiley-sad ph-xl" style="color: red"><strong>2</strong></i></button>
-                    </div>
-                </li>
-                <li class="recipe">
-                    <p>Slow Cooker White Bean & Butternut Squash Bake
-                        <a href="https://www.barilla.com/en-us/recipes/blue-box/barilla-slow-cooker-medium-shells-with-spicy-marinara-sauce-butternut-squash-and-white-beans "
-                            target="_blank">(Recipe)</a>
-                    </p>
-                    <span class="tag">Italian</span>
-                    <div class="vote-buttons">
-                        <button><i class="ph-smiley ph-xl" style="color: green"><strong>10</strong></i></button>
-                        <button><i class="ph-smiley-meh ph-xl" style="color: orange"><strong>3</strong></i></button>
-                        <button><i class="ph-smiley-sad ph-xl" style="color: red"><strong>1</strong></i></button>
-                    </div>
-                </li>
-                <li class="recipe">
-                    <p>Bavarian Goulash
-                        <a href="https://cheftap.com/recipes/bayrischer-gulasch-german-goulash-stew-crock-pot-or-oven-recipe-food-com/"
-                            target="_blank">(Recipe)</a>
-                    </p>
-                    <span class="tag">German</span>
-                    <div class="vote-buttons">
-                        <button><i class="ph-smiley ph-xl" style="color: green"><strong>12</strong></i></button>
-                        <button><i class="ph-smiley-meh ph-xl" style="color: orange"><strong>4</strong></i></button>
-                        <button><i class="ph-smiley-sad ph-xl" style="color: red"><strong>0</strong></i></button>
-                    </div>
-                </li>
-            </ul>
-        </section>
-    </main>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <i class="ph-cooking-pot ph-4x" alt="Recipe Rank Logo"></i>
+                <h1>Welcome to Recipe Rank!</h1>
+            </div>
+            <button>Share a recipe</button>
+        </header>
+        <form class="recipe-form">
+            <input type="text" placeholder="Enter new recipe description" />
+            <span>200</span>
+            <input type="text" placeholder="Enter link to recipe" />
+            <select>
+                <option value="">Choose cuisine type</option>
+                <option value="canadian">Canadian</option>
+                <option value="italian">Italian</option>
+                <option value="german">German</option>
+            </select>
+            <button>Post</button>
+        </form>
+        <main class="main">
+            <aside>
+                <ul>
+                    <li><button>All</button></li>
+                    <li><button>Canadian</button></li>
+                    <li><button>German</button></li>
+                    <li><button>Italian</button></li>
+                </ul>
+            </aside>
+            <section>
+                <ul>
+                    <li class="recipe">
+                        <p>Crispy Ginger Beef
+                            -
+                            <span class="description">A Calgary classic!</span>
+                            <a href="https://www.acanadianfoodie.com/2014/04/08/crispy-ginger-beef-the-authentic-calgary-recipe/"
+                                target="_blank">(Recipe)</a>
+                        </p>
+                        <span class="tag">Canadian</span>
+                        <div class="vote-buttons">
+                            <button><i class="ph-smiley ph-xl" style="color: green"><strong>11</strong></i></button>
+                            <button><i class="ph-smiley-meh ph-xl" style="color: orange"><strong>3</strong></i></button>
+                            <button><i class="ph-smiley-sad ph-xl" style="color: red"><strong>1</strong></i></button>
+                        </div>
+                    </li>
+                    <li class="recipe">
+                        <p>Nanaimo Bars
+                            -
+                            <span class="description">Sweet and delicious!</span>
+                            <a href="https://www.nanaimo.ca/about-nanaimo/nanaimo-bars" target="_blank">(Recipe)</a>
+                        </p>
+                        <span class="tag">Canadian</span>
+                        <div class="vote-buttons">
+                            <button><i class="ph-smiley ph-xl" style="color: green"><strong>14</strong></i></button>
+                            <button><i class="ph-smiley-meh ph-xl" style="color: orange"><strong>2</strong></i></button>
+                            <button><i class="ph-smiley-sad ph-xl" style="color: red"><strong>3</strong></i></button>
+                        </div>
+                    </li>
+                    <li class="recipe">
+                        <p>Tourtière (Meat Pie)
+                            -
+                            <span class="description">Québecois comfort food!</span>
+                            <a href="https://www.kingarthurbaking.com/recipes/christmas-tourtiere-recipe"
+                                target="_blank">(Recipe)</a>
+                        </p>
+                        <span class="tag">Canadian</span>
+                        <div class="vote-buttons">
+                            <button><i class="ph-smiley ph-xl" style="color: green"><strong>14</strong></i></button>
+                            <button><i class="ph-smiley-meh ph-xl" style="color: orange"><strong>3</strong></i></button>
+                            <button><i class="ph-smiley-sad ph-xl" style="color: red"><strong>2</strong></i></button>
+                        </div>
+                    </li>
+                    <li class="recipe">
+                        <p>Slow Cooker White Bean & Butternut Squash Bake
+                            -
+                            <span class="description">Easy and nutritious!</span>
+                            <a href="https://www.barilla.com/en-us/recipes/blue-box/barilla-slow-cooker-medium-shells-with-spicy-marinara-sauce-butternut-squash-and-white-beans"
+                                target="_blank">(Recipe)</a>
+                        </p>
+                        <span class="tag">Italian</span>
+                        <div class="vote-buttons">
+                            <button><i class="ph-smiley ph-xl" style="color: green"><strong>10</strong></i></button>
+                            <button><i class="ph-smiley-meh ph-xl" style="color: orange"><strong>3</strong></i></button>
+                            <button><i class="ph-smiley-sad ph-xl" style="color: red"><strong>1</strong></i></button>
+                        </div>
+                    </li>
+                    <li class="recipe">
+                        <p>Bavarian Goulash
+                            -
+                            <span class="description">Hearty stew, made in the oven or slow cooker!</span>
+                            <a href="https://cheftap.com/recipes/bayrischer-gulasch-german-goulash-stew-crock-pot-or-oven-recipe-food-com/"
+                                target="_blank">(Recipe)</a>
+                        </p>
+                        <span class="tag">German</span>
+                        <div class="vote-buttons">
+                            <button><i class="ph-smiley ph-xl" style="color: green"><strong>12</strong></i></button>
+                            <button><i class="ph-smiley-meh ph-xl" style="color: orange"><strong>4</strong></i></button>
+                            <button><i class="ph-smiley-sad ph-xl" style="color: red"><strong>0</strong></i></button>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+        </main>
+    </div>
+    <footer class="footer">Made with 💚</footer>
 </body>
 
 </html>
