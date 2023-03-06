@@ -43,10 +43,10 @@ h1 {
   background-color: #467a69;
   margin-bottom: 16px;
   padding: 16px 24px;
-}
-
-.form {
-  background-color: #5b9883;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
 }
 
 a:link {
@@ -70,6 +70,10 @@ a:active {
   color: #99f2d1;
   background-color: #1c3e35;
   padding: 5px;
+}
+
+.vote-buttons {
+  margin-left: auto;
 }
 
 ul {
