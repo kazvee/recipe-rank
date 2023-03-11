@@ -46,6 +46,11 @@ body {
   gap: 16px;
 }
 
+.logo img {
+  width: 64px;
+  height: 64px;
+}
+
 h1 {
   font-size: 42px;
   text-align: center;
@@ -164,5 +169,6 @@ ul {
   display: flex;
   font-size: 14px;
   flex-shrink: 0;
+  gap: 4px;
   justify-content: center;
 }
