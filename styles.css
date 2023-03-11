@@ -73,21 +73,18 @@ h1 {
   color: #1c3e35;
 }
 
-/* Links  */
+/* Recipe Links  */
 
-a:link {
+.recipe-link:link,
+.recipe-link:visited {
   color: #d8f3dc;
+  text-decoration: none;
+  margin-left: 12px;
+  transition: 0.3s;
 }
 
-a:visited {
-  color: #84d4b7;
-}
-
-a:hover {
-  color: #d8f3dc;
-}
-
-a:active {
+.recipe-link:hover,
+.recipe-link:active {
   color: #99f2d1;
 }
 
@@ -171,4 +168,16 @@ ul {
   flex-shrink: 0;
   gap: 4px;
   justify-content: center;
+}
+
+.footer-link:link,
+.footer-link:visited {
+  color: #99f2d1;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.footer-link:hover,
+.footer-link:active {
+  color: #d8f3dc;
 }
