@@ -57,6 +57,10 @@ h1 {
   color: #99f2d1;
 }
 
+.category {
+  margin-bottom: 20px;
+}
+
 .recipe {
   font-size: 20px;
   line-height: 1.4;
@@ -101,6 +105,43 @@ h1 {
 
 ul {
   list-style-type: none;
+}
+
+/* Buttons */
+
+.btn {
+  border: none;
+  font-family: 'Dosis', sans-serif;
+  line-height: 1;
+  text-transform: uppercase;
+  font-size: 22px;
+  padding: 8px;
+  background-image: linear-gradient(135deg, #467a69, #d8f3dc, #99f2d1, #ecfdf5);
+  color: #1c3e35;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  transform: scale(120%) rotate(-2deg);
+  background-image: linear-gradient(135deg, #467a69, #d8f3dc, #99f2d1, #ecfdf5);
+  color: #1c3e35;
+}
+
+.btn-large {
+  font-size: 24px;
+  padding: 10px;
+}
+
+.btn-all-categories {
+  margin-bottom: 16px;
+  width: 100%;
+}
+
+.btn-category {
+  width: 100%;
+  background-color: #467a69;
+  color: #d8f3dc;
+  background-image: none;
 }
 
 /* Phosphor Icons */
