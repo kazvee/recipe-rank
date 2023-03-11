@@ -96,7 +96,18 @@ h1 {
   font-size: 14;
   color: #99f2d1;
   background-color: #1c3e35;
-  padding: 5px;
+  padding: 10px;
+
+  clip-path: polygon(
+    15px 0,
+    calc(100% - 15px) 0,
+    100% 15px,
+    100% calc(100% - 15px),
+    calc(100% - 15px) 100%,
+    15px 100%,
+    0 calc(100% - 15px),
+    0 15px
+  );
 }
 
 .vote-buttons {
@@ -118,7 +129,19 @@ ul {
   padding: 8px;
   background-image: linear-gradient(135deg, #467a69, #d8f3dc, #99f2d1, #ecfdf5);
   color: #1c3e35;
+  cursor: pointer;
   transition: 0.3s;
+
+  clip-path: polygon(
+    15px 0,
+    calc(100% - 15px) 0,
+    100% 15px,
+    100% calc(100% - 15px),
+    calc(100% - 15px) 100%,
+    15px 100%,
+    0 calc(100% - 15px),
+    0 15px
+  );
 }
 
 .btn:hover {
@@ -142,63 +165,6 @@ ul {
   background-color: #467a69;
   color: #d8f3dc;
   background-image: none;
-}
-
-/* Phosphor Icons */
-
-.ph-xxs {
-  font-size: 0.5em;
-}
-.ph-xs {
-  font-size: 0.75em;
-}
-.ph-sm {
-  font-size: 0.875em;
-}
-.ph-lg {
-  font-size: 1.3333em;
-  line-height: 0.75em;
-  vertical-align: -0.0667em;
-}
-.ph-xl {
-  font-size: 1.5em;
-  line-height: 0.6666em;
-  vertical-align: -0.075em;
-}
-.ph-1x {
-  font-size: 1em;
-}
-.ph-2x {
-  font-size: 2em;
-}
-.ph-3x {
-  font-size: 3em;
-}
-.ph-4x {
-  font-size: 4em;
-  color: #99f2d1;
-}
-.ph-5x {
-  font-size: 5em;
-}
-.ph-6x {
-  font-size: 6em;
-}
-.ph-7x {
-  font-size: 7em;
-}
-.ph-8x {
-  font-size: 8em;
-}
-.ph-9x {
-  font-size: 9em;
-}
-.ph-10x {
-  font-size: 10em;
-}
-.ph-fw {
-  text-align: center;
-  width: 1.25em;
 }
 
 /* Footer */
