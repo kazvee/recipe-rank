@@ -42,25 +42,9 @@ const initialRecipes = [
 function App() {
   const [showForm, setShowForm] = useState(false);
 
-  const appTitle = 'Recipe Rank';
   return (
     <>
-      {/* Header */}
-      <header className='header'>
-        <div className='logo'>
-          <img
-            src='https://img.icons8.com/external-bearicons-outline-color-bearicons/64/null/external-Recipe-Book-cooking-bearicons-outline-color-bearicons.png'
-            alt='Recipe Rank Logo'
-          />
-          <h1>{appTitle}</h1>
-        </div>
-        <button
-          className='btn btn-large btn-open'
-          onClick={() => setShowForm((show) => !show)}
-        >
-          Share a recipe
-        </button>
-      </header>
+      <Header showForm={showForm} setShowForm={setShowForm} />
 
       {showForm ? <NewRecipeForm /> : null}
 
@@ -69,6 +53,27 @@ function App() {
         <RecipesList />
       </main>
     </>
+  );
+}
+
+function Header({ showForm, setShowForm }) {
+  const appTitle = 'Recipe Rank';
+  return (
+    <header className='header'>
+      <div className='logo'>
+        <img
+          src='https://img.icons8.com/external-bearicons-outline-color-bearicons/64/null/external-Recipe-Book-cooking-bearicons-outline-color-bearicons.png'
+          alt='Recipe Rank Logo'
+        />
+        <h1>{appTitle}</h1>
+      </div>
+      <button
+        className='btn btn-large btn-open'
+        onClick={() => setShowForm((show) => !show)}
+      >
+        {showForm ? 'Close' : 'Share a recipe'}
+      </button>
+    </header>
   );
 }
 
