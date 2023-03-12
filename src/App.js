@@ -41,16 +41,18 @@ const initialRecipes = [
 
 function App() {
   const [showForm, setShowForm] = useState(false);
+  const [recipes, setRecipes] = useState(initialRecipes);
 
   return (
     <>
       <Header showForm={showForm} setShowForm={setShowForm} />
-
-      {showForm ? <NewRecipeForm /> : null}
+      {showForm ? (
+        <NewRecipeForm setRecipes={setRecipes} setShowForm={setShowForm} />
+      ) : null}
 
       <main className='main'>
         <CategoryFilter />
-        <RecipesList />
+        <RecipesList recipes={recipes} />
       </main>
     </>
   );
@@ -96,7 +98,7 @@ function isValidHttpUrl(string) {
   return url.protocol === 'http:' || url.protocol === 'https:';
 }
 
-function NewRecipeForm() {
+function NewRecipeForm({ setRecipes, setShowForm }) {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [source, setSource] = useState('http://example.com');
@@ -127,6 +129,15 @@ function NewRecipeForm() {
         votesSad: 0,
         createdIn: new Date().getFullYear(),
       };
+
+      setRecipes((recipes) => [newRecipe, ...recipes]);
+
+      setName('');
+      setDescription('');
+      setSource('');
+      setCategory('');
+
+      setShowForm(false);
     }
   }
 
@@ -185,10 +196,7 @@ function CategoryFilter() {
   );
 }
 
-function RecipesList() {
-  // temporary data
-  const recipes = initialRecipes;
-
+function RecipesList({ recipes }) {
   return (
     <section>
       <ul className='recipes-list'>
