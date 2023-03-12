@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 import './styles.css';
 
 const initialRecipes = [
@@ -39,6 +40,8 @@ const initialRecipes = [
 ];
 
 function App() {
+  const [showForm, setShowForm] = useState(false);
+
   const appTitle = 'Recipe Rank';
   return (
     <>
@@ -51,10 +54,15 @@ function App() {
           />
           <h1>{appTitle}</h1>
         </div>
-        <button className='btn btn-large btn-open'>Share a recipe</button>
+        <button
+          className='btn btn-large btn-open'
+          onClick={() => setShowForm((show) => !show)}
+        >
+          Share a recipe
+        </button>
       </header>
 
-      <NewRecipeForm />
+      {showForm ? <NewRecipeForm /> : null}
 
       <main className='main'>
         <CategoryFilter />
