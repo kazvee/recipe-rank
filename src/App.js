@@ -43,13 +43,19 @@ const initialRecipes = [
 function App() {
   const [showForm, setShowForm] = useState(false);
   const [recipes, setRecipes] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(function () {
     async function getRecipes() {
+      setIsLoading(true);
       const { data: recipes, error } = await supabase
         .from('recipes')
-        .select('*');
-      setRecipes(recipes);
+        .select('*')
+        .limit(100);
+
+      if (!error) setRecipes(recipes);
+      else console.warn('There was a problem getting data! ☹️');
+      setIsLoading(false);
     }
     getRecipes();
   }, []);
@@ -63,11 +69,15 @@ function App() {
 
       <main className='main'>
         <CategoryFilter />
-        <RecipesList recipes={recipes} />
+        {isLoading ? <Loader /> : <RecipesList recipes={recipes} />}
       </main>
       <Footer />
     </>
   );
+}
+
+function Loader() {
+  return <p className='message'>Loading . . . </p>;
 }
 
 function Header({ showForm, setShowForm }) {
