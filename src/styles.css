@@ -113,6 +113,7 @@ h1 {
 }
 
 .category {
+  text-transform: uppercase;
   margin-bottom: 20px;
 }
 
@@ -157,6 +158,7 @@ h1 {
 
 .tag {
   font-size: 14;
+  text-transform: uppercase;
   color: #99f2d1;
   background-color: #1c3e35;
   padding: 10px;

@@ -5,7 +5,7 @@ const initialRecipes = [
     description: 'Nutritious & easy to make in the slow cooker!',
     source:
       'https://www.barilla.com/en-us/recipes/blue-box/barilla-slow-cooker-medium-shells-with-spicy-marinara-sauce-butternut-squash-and-white-beans/',
-    category: 'Italian',
+    category: 'italian',
     votesVeryHappy: 12,
     votesHappy: 8,
     votesSad: 2,
@@ -16,7 +16,7 @@ const initialRecipes = [
     text: 'Chicken Paprikash',
     description: 'Simple yet sophisticated!',
     source: 'https://cooking.nytimes.com/recipes/1018068-chicken-paprikash/',
-    category: 'Hungarian',
+    category: 'hungarian',
     votesVeryHappy: 10,
     votesHappy: 3,
     votesSad: 1,
@@ -27,7 +27,7 @@ const initialRecipes = [
     text: 'Shahi Paneer',
     description: 'Creamy and so rich in flavour!',
     source: 'https://www.manjulaskitchen.com/shahi-paneer/',
-    category: 'Indian',
+    category: 'indian',
     votesVeryHappy: 13,
     votesHappy: 5,
     votesSad: 0,
@@ -36,12 +36,12 @@ const initialRecipes = [
 ];
 
 const CATEGORIES = [
-  { name: 'Canadian' },
-  { name: 'German' },
-  { name: 'Hungarian' },
-  { name: 'Indian' },
-  { name: 'Italian' },
-  { name: 'Scottish' },
+  { name: 'canadian' },
+  { name: 'german' },
+  { name: 'hungarian' },
+  { name: 'indian' },
+  { name: 'italian' },
+  { name: 'scottish' },
 ];
 
 // Selecting DOM elements
@@ -51,7 +51,23 @@ const recipesList = document.querySelector('.recipes-list');
 
 // Create DOM elements: Render recipes in list
 recipesList.innerHTML = '';
-createRecipesList(initialRecipes);
+
+// Load data from Supabase
+loadRecipes();
+
+async function loadRecipes() {
+  const res = await fetch('process.env.REACT_APP_SUPABASE_API_URL', {
+    headers: {
+      apikey: 'process.env.REACT_APP_SUPABASE_KEY',
+      authorization: 'process.env.REACT_APP_SUPABASE_AUTH',
+    },
+  });
+  const data = await res.json();
+  // console.log(data);
+  // const filteredData = data.filter((recipe) => recipe.category === 'canadian');
+
+  createRecipesList(data);
+}
 
 function createRecipesList(dataArray) {
   const htmlArray = dataArray.map(
@@ -71,7 +87,6 @@ function createRecipesList(dataArray) {
     <span class="tag">${recipe.category}</span>
     </li>`
   );
-
   const html = htmlArray.join('');
   recipesList.insertAdjacentHTML('afterbegin', html);
 }

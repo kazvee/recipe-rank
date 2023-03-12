@@ -1,0 +1,281 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #1c3e35;
+  color: #ecfdf5;
+  font-family: 'Dosis', sans-serif;
+  padding: 48px 64px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Main Layout */
+
+.container {
+  max-width: 1500px;
+  margin: 0 auto;
+}
+
+.header {
+  margin-bottom: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.recipe-form {
+  background-color: #467a69;
+  margin-bottom: 40px;
+  padding: 16px 32px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border-radius: 15px;
+}
+
+.recipe-form input,
+.recipe-form select {
+  width: 220px;
+  background-color: #1c3e35;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 18px;
+  color: inherit;
+  font-family: inherit;
+}
+
+.recipe-form input::placeholder {
+  color: #467a69;
+}
+
+.recipe-form input:first-child {
+  flex-grow: 1;
+}
+
+.recipe-form span {
+  color: #99f2d1;
+  font-size: 16px;
+  margin-right: 18px;
+}
+
+@media (max-width: 1000px) {
+  body {
+    padding: 16px 24px;
+  }
+
+  .recipe-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .recipe-form input,
+  .recipe-form select {
+    width: auto;
+  }
+}
+
+.main {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  gap: 48px;
+}
+
+@media (max-width: 900px) {
+  .main {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Elements */
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.logo img {
+  width: 64px;
+  height: 64px;
+}
+
+h1 {
+  font-size: 42px;
+  text-align: center;
+  color: #99f2d1;
+}
+
+.category {
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.recipe {
+  font-size: 20px;
+  line-height: 1.4;
+  background-color: #467a69;
+  margin-bottom: 16px;
+  padding: 16px 24px;
+  letter-spacing: 1px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+@media (max-width: 1200px) {
+  .recipe {
+    flex-direction: column;
+    gap: 12px;
+  }
+}
+
+.description {
+  color: #99f2d1;
+}
+
+/* Recipe Links  */
+
+.recipe-link:link,
+.recipe-link:visited {
+  color: #1c3e35;
+  text-decoration: none;
+  margin-left: 12px;
+  transition: 0.3s;
+}
+
+.recipe-link:hover,
+.recipe-link:active {
+  color: #99f2d1;
+}
+
+.tag {
+  font-size: 14;
+  text-transform: uppercase;
+  color: #99f2d1;
+  background-color: #1c3e35;
+  padding: 10px;
+
+  clip-path: polygon(
+    15px 0,
+    calc(100% - 15px) 0,
+    100% 15px,
+    100% calc(100% - 15px),
+    calc(100% - 15px) 100%,
+    15px 100%,
+    0 calc(100% - 15px),
+    0 15px
+  );
+}
+
+.vote-buttons {
+  margin-left: auto;
+  flex-shrink: 0;
+  gap: 8px;
+}
+
+.vote-buttons button {
+  border: none;
+  background-color: #99f2d1;
+  color: #1c3e35;
+  font-family: inherit;
+  font-size: 18px;
+  padding: 1px 2px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.vote-buttons button:hover {
+  background-color: #ecfdf5;
+}
+
+ul {
+  list-style-type: none;
+}
+
+/* Buttons */
+
+.btn {
+  border: none;
+  font-family: 'Dosis', sans-serif;
+  line-height: 1;
+  text-transform: uppercase;
+  font-size: 22px;
+  padding: 8px;
+  background-image: linear-gradient(135deg, #467a69, #d8f3dc, #99f2d1, #ecfdf5);
+  color: #1c3e35;
+  cursor: pointer;
+  transition: 0.3s;
+
+  clip-path: polygon(
+    15px 0,
+    calc(100% - 15px) 0,
+    100% 15px,
+    100% calc(100% - 15px),
+    calc(100% - 15px) 100%,
+    15px 100%,
+    0 calc(100% - 15px),
+    0 15px
+  );
+}
+
+.btn:hover {
+  transform: scale(120%) rotate(-2deg);
+  background-image: linear-gradient(135deg, #467a69, #d8f3dc, #99f2d1, #ecfdf5);
+  color: #1c3e35;
+}
+
+.btn-large {
+  font-size: 24px;
+  padding: 10px;
+}
+
+@media (max-width: 900px) {
+  .btn-large {
+    font-size: 18px;
+    margin-left: 5px;
+    padding: 8px;
+  }
+}
+
+.btn-all-categories {
+  margin-bottom: 16px;
+  width: 100%;
+}
+
+.btn-category {
+  width: 100%;
+  background-color: #467a69;
+  color: #d8f3dc;
+  background-image: none;
+}
+
+/* Footer */
+
+.footer {
+  display: flex;
+  font-size: 14px;
+  flex-shrink: 0;
+  gap: 4px;
+  justify-content: center;
+}
+
+.footer-link:link,
+.footer-link:visited {
+  color: #99f2d1;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.footer-link:hover,
+.footer-link:active {
+  color: #d8f3dc;
+}
