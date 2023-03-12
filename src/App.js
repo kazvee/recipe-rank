@@ -77,10 +77,6 @@ function Header({ showForm, setShowForm }) {
   );
 }
 
-function NewRecipeForm() {
-  return <form className='recipe-form'>Recipe Form</form>;
-}
-
 const CATEGORIES = [
   { name: 'canadian' },
   { name: 'german' },
@@ -89,6 +85,57 @@ const CATEGORIES = [
   { name: 'italian' },
   { name: 'scottish' },
 ];
+
+function NewRecipeForm() {
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
+  const [source, setSource] = useState('');
+  const [category, setCategory] = useState('');
+  const nameLength = name.length;
+  const descriptionLength = description.length;
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    console.log(name, description, source, category);
+  }
+
+  return (
+    <form className='recipe-form' onSubmit={handleSubmit}>
+      <input
+        value={name}
+        type='text'
+        placeholder='Enter new recipe name'
+        onChange={(event) => setName(event.target.value)}
+      />
+      <span>{50 - nameLength} characters left</span>
+      <input
+        value={description}
+        type='text'
+        placeholder='Enter new recipe description'
+        onChange={(event) => setDescription(event.target.value)}
+      />
+      <span>{100 - descriptionLength} characters left</span>
+      <input
+        value={source}
+        type='text'
+        placeholder='Enter link to recipe'
+        onChange={(event) => setSource(event.target.value)}
+      />
+      <select
+        value={category}
+        onChange={(event) => setCategory(event.target.value)}
+      >
+        <option value=''>Choose cuisine type</option>
+        {CATEGORIES.map((category) => (
+          <option key={category.name} value={category.name}>
+            {category.name.toUpperCase()}
+          </option>
+        ))}
+      </select>
+      <button className='btn btn-large'>Post</button>
+    </form>
+  );
+}
 
 function CategoryFilter() {
   return (
