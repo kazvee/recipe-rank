@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
+import supabase from './supabase';
 import './styles.css';
 
 const initialRecipes = [
@@ -41,7 +42,17 @@ const initialRecipes = [
 
 function App() {
   const [showForm, setShowForm] = useState(false);
-  const [recipes, setRecipes] = useState(initialRecipes);
+  const [recipes, setRecipes] = useState([]);
+
+  useEffect(function () {
+    async function getRecipes() {
+      const { data: recipes, error } = await supabase
+        .from('recipes')
+        .select('*');
+      setRecipes(recipes);
+    }
+    getRecipes();
+  }, []);
 
   return (
     <>
