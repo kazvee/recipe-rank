@@ -1,15 +1,6 @@
 import React from 'react';
 import './styles.css';
 
-const CATEGORIES = [
-  { name: 'canadian' },
-  { name: 'german' },
-  { name: 'hungarian' },
-  { name: 'indian' },
-  { name: 'italian' },
-  { name: 'scottish' },
-];
-
 const initialRecipes = [
   {
     id: 1,
@@ -77,8 +68,30 @@ function NewRecipeForm() {
   return <form className='recipe-form'>Recipe Form</form>;
 }
 
+const CATEGORIES = [
+  { name: 'canadian' },
+  { name: 'german' },
+  { name: 'hungarian' },
+  { name: 'indian' },
+  { name: 'italian' },
+  { name: 'scottish' },
+];
+
 function CategoryFilter() {
-  return <aside>Category Filter</aside>;
+  return (
+    <aside>
+      <ul>
+        <li className='category'>
+          <button className='btn btn-all-categories'>All Cuisines</button>
+        </li>
+        {CATEGORIES.map((category) => (
+          <li key={category.name} className='category'>
+            <button className='btn btn-category'>{category.name}</button>
+          </li>
+        ))}
+      </ul>
+    </aside>
+  );
 }
 
 function RecipesList() {
