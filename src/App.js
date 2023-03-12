@@ -3,62 +3,70 @@ import { useState } from 'react';
 import supabase from './supabase';
 import './styles.css';
 
-const initialRecipes = [
-  {
-    id: 1,
-    name: 'White Bean & Butternut Squash Bake',
-    description: 'Nutritious & easy to make in the slow cooker!',
-    source:
-      'https://www.barilla.com/en-us/recipes/blue-box/barilla-slow-cooker-medium-shells-with-spicy-marinara-sauce-butternut-squash-and-white-beans/',
-    category: 'italian',
-    votesVeryHappy: 12,
-    votesHappy: 8,
-    votesSad: 2,
-    createdIn: 2021,
-  },
-  {
-    id: 2,
-    name: 'Chicken Paprikash',
-    description: 'Simple yet sophisticated!',
-    source: 'https://cooking.nytimes.com/recipes/1018068-chicken-paprikash/',
-    category: 'hungarian',
-    votesVeryHappy: 10,
-    votesHappy: 3,
-    votesSad: 1,
-    createdIn: 2019,
-  },
-  {
-    id: 3,
-    name: 'Shahi Paneer',
-    description: 'Creamy & rich in flavour!',
-    source: 'https://www.manjulaskitchen.com/shahi-paneer/',
-    category: 'indian',
-    votesVeryHappy: 13,
-    votesHappy: 5,
-    votesSad: 0,
-    createdIn: 2020,
-  },
-];
+// const initialRecipes = [
+//   {
+//     id: 1,
+//     name: 'White Bean & Butternut Squash Bake',
+//     description: 'Nutritious & easy to make in the slow cooker!',
+//     source:
+//       'https://www.barilla.com/en-us/recipes/blue-box/barilla-slow-cooker-medium-shells-with-spicy-marinara-sauce-butternut-squash-and-white-beans/',
+//     category: 'italian',
+//     votesVeryHappy: 12,
+//     votesHappy: 8,
+//     votesSad: 2,
+//     createdIn: 2021,
+//   },
+//   {
+//     id: 2,
+//     name: 'Chicken Paprikash',
+//     description: 'Simple yet sophisticated!',
+//     source: 'https://cooking.nytimes.com/recipes/1018068-chicken-paprikash/',
+//     category: 'hungarian',
+//     votesVeryHappy: 10,
+//     votesHappy: 3,
+//     votesSad: 1,
+//     createdIn: 2019,
+//   },
+//   {
+//     id: 3,
+//     name: 'Shahi Paneer',
+//     description: 'Creamy & rich in flavour!',
+//     source: 'https://www.manjulaskitchen.com/shahi-paneer/',
+//     category: 'indian',
+//     votesVeryHappy: 13,
+//     votesHappy: 5,
+//     votesSad: 0,
+//     createdIn: 2020,
+//   },
+// ];
 
 function App() {
   const [showForm, setShowForm] = useState(false);
   const [recipes, setRecipes] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [currentCategory, setCurrentCategory] = useState('all');
 
-  useEffect(function () {
-    async function getRecipes() {
-      setIsLoading(true);
-      const { data: recipes, error } = await supabase
-        .from('recipes')
-        .select('*')
-        .limit(100);
+  useEffect(
+    function () {
+      async function getRecipes() {
+        setIsLoading(true);
 
-      if (!error) setRecipes(recipes);
-      else console.warn('There was a problem getting data! ☹️');
-      setIsLoading(false);
-    }
-    getRecipes();
-  }, []);
+        let query = supabase.from('recipes').select('*');
+
+        if (currentCategory !== 'all') {
+          query = query.eq('category', currentCategory);
+        }
+
+        const { data: recipes, error } = await query.limit(100);
+
+        if (!error) setRecipes(recipes);
+        else console.warn('There was a problem getting data! ☹️');
+        setIsLoading(false);
+      }
+      getRecipes();
+    },
+    [currentCategory]
+  );
 
   return (
     <>
@@ -68,7 +76,7 @@ function App() {
       ) : null}
 
       <main className='main'>
-        <CategoryFilter />
+        <CategoryFilter setCurrentCategory={setCurrentCategory} />
         {isLoading ? <Loader /> : <RecipesList recipes={recipes} />}
       </main>
       <Footer />
@@ -201,16 +209,26 @@ function NewRecipeForm({ setRecipes, setShowForm }) {
   );
 }
 
-function CategoryFilter() {
+function CategoryFilter({ setCurrentCategory }) {
   return (
     <aside>
       <ul>
         <li className='category'>
-          <button className='btn btn-all-categories'>All Cuisines</button>
+          <button
+            className='btn btn-all-categories'
+            onClick={() => setCurrentCategory('all')}
+          >
+            All Cuisines
+          </button>
         </li>
         {CATEGORIES.map((category) => (
           <li key={category.name} className='category'>
-            <button className='btn btn-category'>{category.name}</button>
+            <button
+              className='btn btn-category'
+              onClick={() => setCurrentCategory(category.name)}
+            >
+              {category.name}
+            </button>
           </li>
         ))}
       </ul>
@@ -219,6 +237,13 @@ function CategoryFilter() {
 }
 
 function RecipesList({ recipes }) {
+  if (recipes.length === 0)
+    return (
+      <p className='message'>
+        No recipes for this category yet. Create the first one!
+      </p>
+    );
+
   return (
     <section>
       <ul className='recipes-list'>
