@@ -89,47 +89,54 @@ function RecipesList() {
     <section>
       <ul className='recipes-list'>
         {recipes.map((recipe) => (
-          <li key={recipe.id} className='recipe'>
-            <p>
-              {recipe.text}
-              <span className='description'> - {recipe.description}</span>
-              <a
-                className='recipe-link'
-                href={recipe.source}
-                target='_blank'
-                rel='noreferrer'
-              >
-                (Recipe)
-              </a>
-            </p>
-            <span className='tag'>{recipe.category}</span>
-            <div className='vote-buttons'>
-              <button>
-                <img
-                  src='https://img.icons8.com/pulsar-color/30/null/smiling.png'
-                  alt='very happy face emoji'
-                />
-                {recipe.votesVeryHappy}
-              </button>
-              <button>
-                <img
-                  src='https://img.icons8.com/pulsar-color/30/null/happy.png'
-                  alt='happy face emoji'
-                />
-                {recipe.votesHappy}
-              </button>
-              <button>
-                <img
-                  src='https://img.icons8.com/pulsar-color/30/null/sad.png'
-                  alt='sad face emoji'
-                />
-                {recipe.votesSad}
-              </button>
-            </div>
-          </li>
+          <Recipe key={recipe.id} recipe={recipe} />
         ))}
       </ul>
+      <p>There are {recipes.length} recipes in the database. Add your own!</p>
     </section>
+  );
+}
+
+function Recipe({ recipe }) {
+  return (
+    <li className='recipe'>
+      <p>
+        {recipe.text}
+        <span className='description'> - {recipe.description}</span>
+        <a
+          className='recipe-link'
+          href={recipe.source}
+          target='_blank'
+          rel='noreferrer'
+        >
+          (Recipe)
+        </a>
+      </p>
+      <span className='tag'>{recipe.category}</span>
+      <div className='vote-buttons'>
+        <button>
+          <img
+            src='https://img.icons8.com/pulsar-color/30/null/smiling.png'
+            alt='very happy face emoji'
+          />
+          {recipe.votesVeryHappy}
+        </button>
+        <button>
+          <img
+            src='https://img.icons8.com/pulsar-color/30/null/happy.png'
+            alt='happy face emoji'
+          />
+          {recipe.votesHappy}
+        </button>
+        <button>
+          <img
+            src='https://img.icons8.com/pulsar-color/30/null/sad.png'
+            alt='sad face emoji'
+          />
+          {recipe.votesSad}
+        </button>
+      </div>
+    </li>
   );
 }
 
