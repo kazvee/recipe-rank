@@ -54,6 +54,7 @@ function App() {
         <CategoryFilter />
         <RecipesList recipes={recipes} />
       </main>
+      <Footer />
     </>
   );
 }
@@ -249,6 +250,22 @@ function Recipe({ recipe }) {
         </button>
       </div>
     </li>
+  );
+}
+
+function Footer() {
+  return (
+    <footer className='footer'>
+      Made with 💚 and some lovely icons and emoji from{' '}
+      <a
+        className='footer-link'
+        href='https://icons8.com/'
+        target='_blank'
+        rel='noreferrer'
+      >
+        icons8.com
+      </a>
+    </footer>
   );
 }
 
