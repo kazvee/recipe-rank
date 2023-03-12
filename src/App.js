@@ -5,7 +5,7 @@ import './styles.css';
 const initialRecipes = [
   {
     id: 1,
-    text: 'White Bean & Butternut Squash Bake',
+    name: 'White Bean & Butternut Squash Bake',
     description: 'Nutritious & easy to make in the slow cooker!',
     source:
       'https://www.barilla.com/en-us/recipes/blue-box/barilla-slow-cooker-medium-shells-with-spicy-marinara-sauce-butternut-squash-and-white-beans/',
@@ -17,7 +17,7 @@ const initialRecipes = [
   },
   {
     id: 2,
-    text: 'Chicken Paprikash',
+    name: 'Chicken Paprikash',
     description: 'Simple yet sophisticated!',
     source: 'https://cooking.nytimes.com/recipes/1018068-chicken-paprikash/',
     category: 'hungarian',
@@ -28,7 +28,7 @@ const initialRecipes = [
   },
   {
     id: 3,
-    text: 'Shahi Paneer',
+    name: 'Shahi Paneer',
     description: 'Creamy & rich in flavour!',
     source: 'https://www.manjulaskitchen.com/shahi-paneer/',
     category: 'indian',
@@ -86,10 +86,20 @@ const CATEGORIES = [
   { name: 'scottish' },
 ];
 
+function isValidHttpUrl(string) {
+  let url;
+  try {
+    url = new URL(string);
+  } catch (_) {
+    return false;
+  }
+  return url.protocol === 'http:' || url.protocol === 'https:';
+}
+
 function NewRecipeForm() {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
-  const [source, setSource] = useState('');
+  const [source, setSource] = useState('http://example.com');
   const [category, setCategory] = useState('');
   const nameLength = name.length;
   const descriptionLength = description.length;
@@ -97,6 +107,27 @@ function NewRecipeForm() {
   function handleSubmit(event) {
     event.preventDefault();
     console.log(name, description, source, category);
+
+    if (
+      name &&
+      nameLength < 50 &&
+      description &&
+      descriptionLength < 100 &&
+      isValidHttpUrl(source) &&
+      category
+    ) {
+      const newRecipe = {
+        id: Math.round(Math.random() * 10000000),
+        name,
+        description,
+        source,
+        category,
+        votesVeryHappy: 0,
+        votesHappy: 0,
+        votesSad: 0,
+        createdIn: new Date().getFullYear(),
+      };
+    }
   }
 
   return (
@@ -174,7 +205,7 @@ function Recipe({ recipe }) {
   return (
     <li className='recipe'>
       <p>
-        {recipe.text}
+        {recipe.name}
         <span className='description'> - {recipe.description}</span>
         <a
           className='recipe-link'
