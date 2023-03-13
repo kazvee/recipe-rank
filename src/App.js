@@ -135,7 +135,7 @@ function isValidHttpUrl(string) {
 function NewRecipeForm({ setRecipes, setShowForm }) {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
-  const [source, setSource] = useState('http://example.com');
+  const [source, setSource] = useState('');
   const [category, setCategory] = useState('');
   const [isUploading, setIsUploading] = useState(false);
   const nameLength = name.length;
@@ -277,6 +277,9 @@ function RecipesList({ recipes, setRecipes }) {
 function Recipe({ recipe, setRecipes }) {
   const [isUpdating, setIsUpdating] = useState(false);
 
+  const isUnpopular =
+    recipe.votesVeryHappy + recipe.votesHappy < recipe.votesSad;
+
   async function handleVote(columnName) {
     setIsUpdating(true);
     const { data: updatedRecipe, error } = await supabase
@@ -295,6 +298,11 @@ function Recipe({ recipe, setRecipes }) {
   return (
     <li className='recipe'>
       <p>
+        {isUnpopular ? (
+          <span className='unpopular'>
+            ⚠️ WARNING - This recipe was disliked by our voters!
+          </span>
+        ) : null}
         {recipe.name}
         <span className='description'> - {recipe.description}</span>
         <a

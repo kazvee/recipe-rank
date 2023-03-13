@@ -22,6 +22,12 @@ body {
   display: none !important;
 }
 
+.unpopular {
+  color: #f97316;
+  font-weight: 600;
+  margin-right: 10px;
+}
+
 /* Main Layout */
 
 #root {
