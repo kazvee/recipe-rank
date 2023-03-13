@@ -133,10 +133,11 @@ function NewRecipeForm({ setRecipes, setShowForm }) {
   const [description, setDescription] = useState('');
   const [source, setSource] = useState('http://example.com');
   const [category, setCategory] = useState('');
+  const [isUploading, setIsUploading] = useState(false);
   const nameLength = name.length;
   const descriptionLength = description.length;
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
     console.log(name, description, source, category);
 
@@ -148,19 +149,26 @@ function NewRecipeForm({ setRecipes, setShowForm }) {
       isValidHttpUrl(source) &&
       category
     ) {
-      const newRecipe = {
-        id: Math.round(Math.random() * 10000000),
-        name,
-        description,
-        source,
-        category,
-        votesVeryHappy: 0,
-        votesHappy: 0,
-        votesSad: 0,
-        createdIn: new Date().getFullYear(),
-      };
+      // const newRecipe = {
+      //   id: Math.round(Math.random() * 10000000),
+      //   name,
+      //   description,
+      //   source,
+      //   category,
+      //   votesVeryHappy: 0,
+      //   votesHappy: 0,
+      //   votesSad: 0,
+      //   createdIn: new Date().getFullYear(),
+      // };
 
-      setRecipes((recipes) => [newRecipe, ...recipes]);
+      setIsUploading(true);
+      const { data: newRecipe, error } = await supabase
+        .from('recipes')
+        .insert([{ name, description, source, category }])
+        .select();
+      setIsUploading(false);
+
+      if (!error) setRecipes((recipes) => [newRecipe[0], ...recipes]);
 
       setName('');
       setDescription('');
@@ -178,6 +186,7 @@ function NewRecipeForm({ setRecipes, setShowForm }) {
         type='text'
         placeholder='Enter new recipe name'
         onChange={(event) => setName(event.target.value)}
+        disabled={isUploading}
       />
       <span>{50 - nameLength} characters left</span>
       <input
@@ -185,6 +194,7 @@ function NewRecipeForm({ setRecipes, setShowForm }) {
         type='text'
         placeholder='Enter new recipe description'
         onChange={(event) => setDescription(event.target.value)}
+        disabled={isUploading}
       />
       <span>{100 - descriptionLength} characters left</span>
       <input
@@ -192,10 +202,12 @@ function NewRecipeForm({ setRecipes, setShowForm }) {
         type='text'
         placeholder='Enter link to recipe'
         onChange={(event) => setSource(event.target.value)}
+        disabled={isUploading}
       />
       <select
         value={category}
         onChange={(event) => setCategory(event.target.value)}
+        disabled={isUploading}
       >
         <option value=''>Choose cuisine type</option>
         {CATEGORIES.map((category) => (
@@ -204,7 +216,9 @@ function NewRecipeForm({ setRecipes, setShowForm }) {
           </option>
         ))}
       </select>
-      <button className='btn btn-large'>Post</button>
+      <button className='btn btn-large' disabled={isUploading}>
+        Post
+      </button>
     </form>
   );
 }
@@ -302,7 +316,7 @@ function Recipe({ recipe }) {
 function Footer() {
   return (
     <footer className='footer'>
-      Made with 💚 and some lovely icons and emoji from{' '}
+      Made with 💚 and some lovely icons and emoji from{'  '}
       <a
         className='footer-link'
         href='https://icons8.com/'
