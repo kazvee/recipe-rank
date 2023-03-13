@@ -77,7 +77,11 @@ function App() {
 
       <main className='main'>
         <CategoryFilter setCurrentCategory={setCurrentCategory} />
-        {isLoading ? <Loader /> : <RecipesList recipes={recipes} />}
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <RecipesList recipes={recipes} setRecipes={setRecipes} />
+        )}
       </main>
       <Footer />
     </>
@@ -250,7 +254,7 @@ function CategoryFilter({ setCurrentCategory }) {
   );
 }
 
-function RecipesList({ recipes }) {
+function RecipesList({ recipes, setRecipes }) {
   if (recipes.length === 0)
     return (
       <p className='message'>
@@ -262,7 +266,7 @@ function RecipesList({ recipes }) {
     <section>
       <ul className='recipes-list'>
         {recipes.map((recipe) => (
-          <Recipe key={recipe.id} recipe={recipe} />
+          <Recipe key={recipe.id} recipe={recipe} setRecipes={setRecipes} />
         ))}
       </ul>
       <p>There are {recipes.length} recipes in the database. Add your own!</p>
@@ -270,7 +274,24 @@ function RecipesList({ recipes }) {
   );
 }
 
-function Recipe({ recipe }) {
+function Recipe({ recipe, setRecipes }) {
+  const [isUpdating, setIsUpdating] = useState(false);
+
+  async function handleVote(columnName) {
+    setIsUpdating(true);
+    const { data: updatedRecipe, error } = await supabase
+      .from('recipes')
+      .update({ [columnName]: recipe[columnName] + 1 })
+      .eq('id', recipe.id)
+      .select();
+    setIsUpdating(false);
+
+    if (!error)
+      setRecipes((recipes) =>
+        recipes.map((r) => (r.id === recipe.id ? updatedRecipe[0] : r))
+      );
+  }
+
   return (
     <li className='recipe'>
       <p>
@@ -287,21 +308,24 @@ function Recipe({ recipe }) {
       </p>
       <span className='tag'>{recipe.category}</span>
       <div className='vote-buttons'>
-        <button>
+        <button
+          onClick={() => handleVote('votesVeryHappy')}
+          disabled={isUpdating}
+        >
           <img
             src='https://img.icons8.com/pulsar-color/30/null/smiling.png'
             alt='very happy face emoji'
           />
           {recipe.votesVeryHappy}
         </button>
-        <button>
+        <button onClick={() => handleVote('votesHappy')} disabled={isUpdating}>
           <img
             src='https://img.icons8.com/pulsar-color/30/null/happy.png'
             alt='happy face emoji'
           />
           {recipe.votesHappy}
         </button>
-        <button>
+        <button onClick={() => handleVote('votesSad')} disabled={isUpdating}>
           <img
             src='https://img.icons8.com/pulsar-color/30/null/sad.png'
             alt='sad face emoji'
