@@ -3,43 +3,6 @@ import { useState } from 'react';
 import supabase from './supabase';
 import './styles.css';
 
-// const initialRecipes = [
-//   {
-//     id: 1,
-//     name: 'White Bean & Butternut Squash Bake',
-//     description: 'Nutritious & easy to make in the slow cooker!',
-//     source:
-//       'https://www.barilla.com/en-us/recipes/blue-box/barilla-slow-cooker-medium-shells-with-spicy-marinara-sauce-butternut-squash-and-white-beans/',
-//     category: 'italian',
-//     votesVeryHappy: 12,
-//     votesHappy: 8,
-//     votesSad: 2,
-//     createdIn: 2021,
-//   },
-//   {
-//     id: 2,
-//     name: 'Chicken Paprikash',
-//     description: 'Simple yet sophisticated!',
-//     source: 'https://cooking.nytimes.com/recipes/1018068-chicken-paprikash/',
-//     category: 'hungarian',
-//     votesVeryHappy: 10,
-//     votesHappy: 3,
-//     votesSad: 1,
-//     createdIn: 2019,
-//   },
-//   {
-//     id: 3,
-//     name: 'Shahi Paneer',
-//     description: 'Creamy & rich in flavour!',
-//     source: 'https://www.manjulaskitchen.com/shahi-paneer/',
-//     category: 'indian',
-//     votesVeryHappy: 13,
-//     votesHappy: 5,
-//     votesSad: 0,
-//     createdIn: 2020,
-//   },
-// ];
-
 function App() {
   const [showForm, setShowForm] = useState(false);
   const [recipes, setRecipes] = useState([]);
@@ -153,18 +116,6 @@ function NewRecipeForm({ setRecipes, setShowForm }) {
       isValidHttpUrl(source) &&
       category
     ) {
-      // const newRecipe = {
-      //   id: Math.round(Math.random() * 10000000),
-      //   name,
-      //   description,
-      //   source,
-      //   category,
-      //   votesVeryHappy: 0,
-      //   votesHappy: 0,
-      //   votesSad: 0,
-      //   createdIn: new Date().getFullYear(),
-      // };
-
       setIsUploading(true);
       const { data: newRecipe, error } = await supabase
         .from('recipes')
