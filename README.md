@@ -4,11 +4,17 @@ A recipe sharing site that allows visitors to vote on the links submitted.
 
 ## Live Demo
 
-A demo can be viewed [here](https://recipe-rank.netlify.app/)
+A demo can be viewed ✨[HERE](https://kazvee.github.io/recipe-rank/)✨
 
 **NOTE:** Anonymous users cannot submit new recipe links, but can still vote on existing ones.
 
 ## Preview
+
+### Demo Video:
+
+https://github.com/kazvee/recipe-rank/assets/109990289/c866c167-4ddb-4b2b-82d9-a1d09ed88bd4
+
+### Screenshot:
 
 ![Preview image](public/RecipeRank.jpg)
 
@@ -16,7 +22,7 @@ A demo can be viewed [here](https://recipe-rank.netlify.app/)
 
 - [React.js](https://https://react.dev/)
 - [Supabase](https://https://supabase.io/)
-- [Netlify](https://https://www.netlify.com/)
+- [GitHub Pages](https://docs.github.com/en/pages)
 
 ## Installation
 
