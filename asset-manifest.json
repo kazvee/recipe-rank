@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/recipe-rank/static/css/main.48640342.css",
+    "main.js": "/recipe-rank/static/js/main.0c70a9d2.js",
+    "index.html": "/recipe-rank/index.html",
+    "main.48640342.css.map": "/recipe-rank/static/css/main.48640342.css.map",
+    "main.0c70a9d2.js.map": "/recipe-rank/static/js/main.0c70a9d2.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.48640342.css",
+    "static/js/main.0c70a9d2.js"
+  ]
+}
